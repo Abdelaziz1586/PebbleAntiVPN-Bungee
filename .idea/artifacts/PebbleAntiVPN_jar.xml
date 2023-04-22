@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="PebbleAntiVPN:jar">
+    <output-path>$USER_HOME$/Desktop/TestServer/Bungeecord/plugins</output-path>
+    <root id="archive" name="PebbleAntiVPN.jar">
+      <element id="module-output" name="PebbleAntiVPN" />
+    </root>
+  </artifact>
+</component>

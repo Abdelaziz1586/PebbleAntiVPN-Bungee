@@ -1,0 +1,187 @@
+# Thanks for using and depending on, us, PebbleAntiVPN. #
+# We will try our best to keep your server safe as well as giving you the best experience. #
+
+# Firewall System #
+
+block-IP-system: # IPs to block
+
+  # When more than 45 new players with new IPs join the server in under a minute, using variables here will be ignored.
+  rate-limit-message: "&cSorry, but there are too many incoming connections at the moment%nl%&cPlease try again later"
+
+  bypass-permission:
+    enabled: false
+    permission: pav.bypass.* # Data of players that has this permission will NOT be saved if this option is enabled.
+  proxy:
+    enabled: true
+    block-message: "&cProxies aren't allowed in this server"
+    alert-query: "Proxy IP" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.proxy # Proxy Datum won't be added to the saved data of any player with this permission.
+  mobile:
+    enabled: false # Super sensitive, may cause some false flags!
+    block-message: "&cMobile networks aren't allowed in this server"
+    alert-query: "Cellular IP" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.mobile # Mobile Datum won't be added to the saved data of any player with this permission.
+  hosting:
+    enabled: true
+    block-message: "&cHosting networks aren't allowed in this server"
+    alert-query: "Hosting IP" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.hosting # Hosting Datum won't be added to the saved data of any player with this permission.
+  country:
+    enabled: true
+    block-message: "&cYour country isn't allowed in this server &e(%country%)"
+    alert-query: "Blocked Country" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.country # Country Datum won't be added to the saved data of any player with this permission.
+    names:
+      - Israel
+    codes: # Country codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+      - IL
+  continent:
+    enabled: false
+    block-message: "&cYour continent isn't allowed in this server &e(%continent%)"
+    alert-query: "Blocked Continent" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.continent # Continent Datum won't be added to the saved data of any player with this permission.
+    names:
+      - Template
+    codes:
+      - Template
+  region:
+    enabled: false
+    block-message: "&cYour region isn't allowed in this server &e(%region%)"
+    alert-query: "Blocked Region" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.region # Region Datum won't be added to the saved data of any player with this permission.
+    names: # Region/state, Example: California
+      - Template
+    codes: # Region/state short code (FIPS or ISO), Example: CA or 10
+      - Template
+  city:
+    enabled: false
+    block-message: "&cYour city isn't allowed in this server &e(%city%)"
+    alert-query: "Blocked City" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.city # City Datum won't be added to the saved data of any player with this permission.
+    names: # Example: Mountain View
+      - Template
+  district: # Subdivision of city.
+    enabled: false
+    block-message: "&cYour district isn't allowed in this server &e(%district%)"
+    alert-query: "Blocked District" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.district # District Datum won't be added to the saved data of any player with this permission.
+    names:
+      - Template
+  zip:
+    enabled: false
+    block-message: "&cYour ZIP isn't allowed in this server &e(%zip%)"
+    alert-query: "Blocked ZIP" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.zip # ZIP Datum won't be added to the saved data of any player with this permission.
+    codes: # Example: 94043
+      - Template
+  timezone:
+    enabled: false
+    block-message: "&cYour timezone isn't allowed in this server &e(%timezone%)"
+    alert-query: "Blocked Timezone" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.timezone # Timezone Datum won't be added to the saved data of any player with this permission.
+    timezones: # Example: America/Los_Angeles
+      - Template
+  currency: # National currency
+    enabled: false
+    block-message: "&cYour country's currency isn't allowed in this server &e(%currency%)"
+    alert-query: "Blocked Currency" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.currency # Currency Datum won't be added to the saved data of any player with this permission.
+    currencies: # Example: USD
+      - Template
+  ISP:
+    enabled: false
+    block-message: "&cYour ISP isn't allowed in this server &e(%isp%)"
+    alert-query: "Blocked ISP" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.isp # ISP Datum won't be added to the saved data of any player with this permission.
+    names: # Example: Google
+      - Template
+  ORG:
+    enabled: false
+    block-message: "&cThe internet organization you're using isn't allowed in this server &e(%org%)"
+    alert-query: "Blocked IP Organization" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.org # Organization Datum won't be added to the saved data of any player with this permission.
+    names: # Example: Google
+      - Template
+  as:
+    enabled: false
+    block-message: "&cYour IP AS isn't allowed in this server &e(%as%)"
+    alert-query: "Blocked IP AS" # Will be used in Messages and Alerts down in the config.
+    bypass-permission: pav.bypass.as # AS Datum won't be added to the saved data of any player with this permission.
+    numbers: # Example: AS15169 Google Inc.
+      - Template
+    names: # Example: GOOGLE
+      - Template
+
+# Messages and Alerts #
+
+IP-blockage-alert:
+  date-time-formatter-pattern: "yyyy/MM/dd HH:mm:ss"
+  console:
+    enabled: true
+    message: "&cIP &e%ip% &chas been blocked for the following reason &e%alert-query%"
+  players:
+    enabled: true
+    permission: pav.alerts
+    message: "&7[&6PebbleAntiVPN&6] &cBlocked IP &e%ip% &cfor the following reason &e%alert-query%"
+  discord-webhook:
+    enabled: false
+    webhook-url: "Webhook URL here"
+    text-message:
+      enabled: true
+      content: "**New Alert!**"
+    embed:
+      enabled: true
+      title:
+        enabled: true
+        text: "PebbleAntiVPN IP Blockage"
+      description:
+        enabled: true
+        text: "A player has connected using a suspicious IP"
+      color:
+        random: false
+        rgb-colors:
+          R: 242
+          G: 146
+          B: 13
+      fields:
+        enabled: true
+        embed-fields:
+          1:
+            name: "Player"
+            value: "%player%"
+            inline: true
+          2:
+            name: "IP"
+            value: "%ip%"
+            inline: true
+          3:
+            name: "Reason"
+            value: '%alert-query%'
+            inline: true
+      footer:
+        enabled: true
+        text: "Detected at: %time%"
+        icon:
+          enabled: true
+          url: "https://i.imgur.com/obCxZdl.png"
+      thumbnail:
+        enabled: true
+        thumbnail-url: "https://mc-heads.net/avatar/%player%/"
+
+# Reload Command #
+command:
+  reload:
+    permission: pav.command.reload
+    message: "&aReloaded all config and data!"
+  whitelist:
+    permission: pav.command.whitelist
+    messages:
+      IP:
+        add: "&aSuccessfully add IP &e%ip% &ato the whitelist"
+        remove: "&aSuccessfully removed IP &e%ip% &afrom the whitelist"
+      playerName:
+        add: "&aAdded IP linked with player &e%player% &ato the whitelist"
+        remove: "&aRemoved IP linked with player &e%player% &afrom the whitelist"
+      failed: "&cFailed to manage whitelist settings of %query%"
+    no-given-query: "&c/pav whitelist (add/remove) (name/IP)"
+  incomplete-arguments: "&c/pav reload%nl%&c/pav whitelist (add/remove) (name/IP)"

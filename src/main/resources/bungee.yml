@@ -1,0 +1,5 @@
+name: PebbleAntiVPN
+version: '${project.version}'
+main: me.pebbleprojects.pebbleantivpn.PebbleAntiVPN
+author: PebbleProjects
+description: An advanced AntiVPN plugin.
