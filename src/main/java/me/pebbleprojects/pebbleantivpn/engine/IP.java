@@ -44,15 +44,11 @@ public class IP {
                 InputStream inputStream;
                 final URL url = new URL("http://ip-api.com/json/" + IP + "?fields=continent,continentCode,country,countryCode,region,regionName,city,district,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,mobile,proxy,hosting");
                 final HttpURLConnection http = (HttpURLConnection) url.openConnection();
-                http.setConnectTimeout(1000);
                 http.setReadTimeout(1000);
+                http.setConnectTimeout(1000);
                 http.setRequestProperty("Accept", "application/json");
                 final int responseCode = http.getResponseCode();
-                if (200 <= responseCode && responseCode <= 299) {
-                    inputStream = http.getInputStream();
-                } else {
-                    inputStream = http.getErrorStream();
-                }
+                inputStream = (200 <= responseCode && responseCode <= 299) ? http.getInputStream() : http.getErrorStream();
 
                 if (Integer.parseInt(http.getHeaderField("X-Rl")) == 0) {
                     Handler.INSTANCE.setCooldown(Integer.parseInt(http.getHeaderField("X-Ttl")));
@@ -70,7 +66,8 @@ public class IP {
                 json = response.toString().replaceFirst("\\{", "{\"name\":\"" + player.getName() + "\",");
                 Handler.INSTANCE.writeData(dataIP, json);
                 getBlockedMessageReady(true);
-            } catch (final Exception ignored) {
+            } catch (final Exception ex) {
+                ex.printStackTrace();
             }
             return;
         }

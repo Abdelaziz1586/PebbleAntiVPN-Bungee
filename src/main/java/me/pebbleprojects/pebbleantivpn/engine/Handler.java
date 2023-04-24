@@ -33,6 +33,7 @@ public class Handler {
     private final File configFile, dataFile;
 
     public Handler(final PebbleAntiVPN main) {
+        INSTANCE = this;
         this.main = main;
         logger = main.getLogger();
         scheduler = main.getProxy().getScheduler();
